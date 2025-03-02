@@ -1,20 +1,25 @@
-name: Running a Hola Mundo Message
+name: Testing triggers in GitHub Actions
 
-run-name: Estoy Aprendiendo GitHub Actions
+run-name: Estoy Testeando varios triggers en GitHub Actions
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push events for all branches
+  # Triggers the workflow on push, pull request or schedule events for all branches
   push:
     branches: [ "*" ]
+    
+  pull_request:
+    branches: ["*"]
+    types:
+      - opened
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  schedule:
+    - cron: '0 6,18 15 * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "hola-mundo"
-  hola-mundo:
+  # This workflow contains a single job called "triggers-job"
+  triggers-job:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -28,6 +33,6 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
 
-      # Runs a single command using the runners shell
-      - name: Run Hola-mundo JavaScript script on Node.js
-        run: node hola-mundo.js
+      # Runs a JS file using the runners shell
+      - name: Run triggers JavaScript script on Node.js
+        run: node triggers.js
