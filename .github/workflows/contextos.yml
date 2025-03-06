@@ -1,0 +1,22 @@
+name: Testing context in GitHub Actions
+
+run-name: Estoy Testeando varias contextos en GitHub Actions
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events for all branches
+  push:
+    branches: [ "*" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "github-context"
+  github-context:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Print some information from github
+      - name: Printing some information from github
+        run: echo ${{github.actor}} printed this message on ${{github.repository}} because he ${{github.action}} to ${{github.ref}}

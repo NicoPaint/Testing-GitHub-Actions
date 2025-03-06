@@ -1,0 +1,55 @@
+name: Testing expressions in GitHub Actions
+
+run-name: Estoy Testeando varias expresiones en GitHub Actions
+
+# Controls when the workflow will run
+on:
+  
+  workflow_dispatch:
+    inputs:
+      nombre:
+        description: Tu nombre
+        required: true
+        type: string
+      genero:
+        description: Tu Genero
+        required: true
+        default: 'No deseo decirlo'
+        type: choice
+        options:
+            - No deseo decirlo
+            - Hombre
+            - Mujer
+      edad:
+        description: Tu edad
+        required: true
+        type: number
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  Hombre-mayor:
+    if: ${{inputs.genero == 'Hombre' && inputs.edad >= 18}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: correr script Hombre
+        run: echo ${{inputs.nombre}} es un hombre mayor de edad.
+
+  Mujer-mayor:
+    if: ${{inputs.genero == 'Mujer' && inputs.edad >= 18}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: correr script Mujer
+        run: echo ${{inputs.nombre}} es una mujer mayor de edad.
+
+  Menor-de-edad:
+    if: ${{inputs.edad < 18}}
+    runs-on: ubuntu-latest
+    steps:
+        - name: correr script niño
+          if: ${{inputs.genero == 'Hombre'}}
+          run: echo ${{inputs.nombre}} es un niño menor de edad
+        - name: correr script niña
+          if: ${{inputs.genero == 'Mujer'}}
+          run: echo ${{inputs.nombre}} es una niña menor de edad
+  
