@@ -1,6 +1,6 @@
-name: Testing triggers in GitHub Actions
+name: Testing expressions in GitHub Actions
 
-run-name: Estoy Testeando varios triggers en GitHub Actions
+run-name: Estoy Testeando varias expresiones en GitHub Actions
 
 # Controls when the workflow will run
 on:
