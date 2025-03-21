@@ -1,0 +1,28 @@
+name: Testing Env variable in GitHub Actions
+
+run-name: Estoy Testeando varias variables de entorno en GitHub Actions
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events for all branches
+  push:
+    branches: [ "*" ]
+
+env:
+  WORKFLOW_LEVEL_ENV: Workflow level variable
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "github-env-variables"
+  github-env-variables:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      JOB_LEVEL_ENV: Job level variable
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Print env variables according to their level of hierarchy
+      - name: Printing env variables sorted by scope, from the general to specific.
+        run: echo "Printing env varibales from the most general to the most specific ${{ vars.REPOSITORY_LEVEL_ENV }} , $WORKFLOW_LEVEL_ENV , $JOB_LEVEL_ENV, $STEP_LEVEL_ENV"
+        env:
+          STEP_LEVEL_ENV: Step level variable

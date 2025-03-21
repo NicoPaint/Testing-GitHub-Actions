@@ -1,0 +1,1 @@
+console.log("I was triggered by either a push or open pull request, or it is 6 am or 6 pm of every 15th of the month");
