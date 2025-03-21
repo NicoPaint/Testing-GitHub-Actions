@@ -23,6 +23,6 @@ jobs:
     steps:
       # Print env variables according to their level of hierarchy
       - name: Printing env variables sorted by scope, from the general to specific.
-        run: echo "Printing env varibales from the most general to the most specific $REPOSITORY_LEVEL_ENV , $WORKFLOW_LEVEL_ENV , $JOB_LEVEL_ENV, $STEP_LEVEL_ENV"
+        run: echo "Printing env varibales from the most general to the most specific ${{ vars.REPOSITORY_LEVEL_ENV }} , $WORKFLOW_LEVEL_ENV , $JOB_LEVEL_ENV, $STEP_LEVEL_ENV"
         env:
           STEP_LEVEL_ENV: Step level variable
